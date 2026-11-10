@@ -30,7 +30,7 @@
             background-color: #FFFFFF;
             border-bottom: 2px solid var(--azul-escuro);
             padding: 10px 0;
-            z-index: 1050; /* Garante que o menu fique acima do carrossel */
+            z-index: 1050;
         }
         .navbar-brand img { height: 55px; }
         .nav-link { color: var(--azul-escuro) !important; font-weight: 600; font-size: 14px; }
@@ -47,7 +47,7 @@
         /* --- CARROSSEL HERO --- */
         .hero-carousel {
             position: relative;
-            height: 600px; /* Altura do banner */
+            height: 600px;
             background-color: var(--azul-escuro);
         }
         
@@ -57,7 +57,6 @@
             background-color: var(--azul-escuro);
         }
 
-        /* Aplica o degradê azul em cima das imagens */
         .carousel-item::before {
             content: '';
             position: absolute;
@@ -66,21 +65,19 @@
             z-index: 1;
         }
 
-        /* As imagens ficam alinhadas à direita (ou centro) */
         .carousel-item img {
             height: 100%;
             width: 100%;
-            object-fit: cover; /* Ajusta a imagem sem distorcer */
-            object-position: right center; /* Foca no funcionário */
+            object-fit: cover;
+            object-position: right center;
             position: relative;
             z-index: 0;
         }
 
-        /* Texto do Banner */
         .hero-text {
             position: absolute;
             top: 50%;
-            left: 10%; /* Distância da borda esquerda */
+            left: 10%;
             transform: translateY(-50%);
             z-index: 2;
             color: white;
@@ -222,7 +219,7 @@
             .hero-carousel, .carousel-item { height: 500px; }
             .hero-text { left: 5%; right: 5%; text-align: center; }
             .hero-text h1 { font-size: 2.2rem; }
-            .carousel-item img { object-position: center; opacity: 0.3; } /* Deixa a foto mais apagada no celular para o texto aparecer */
+            .carousel-item img { object-position: center; opacity: 0.3; }
             .faixa-icones .item { margin-bottom: 15px; }
             .contato-item { margin-bottom: 15px; }
         }
@@ -233,7 +230,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <img src="logo.png" alt="SR Soluções Industriais"> 
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -241,9 +238,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="#sobre">Sobre Nós</a></li>
                     <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+                    <!-- LINK CLIENTES ADICIONADO AQUI -->
+                    <li class="nav-item"><a class="nav-link" href="clientes.html">Clientes</a></li>
                     <li class="nav-item"><a class="nav-link" href="#vagas">Vagas</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
                 </ul>
@@ -322,7 +321,6 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-4 mb-md-0 foto-sobre">
-                    <!-- AQUI MANTIVE A FOTO DA MATRIZ PARA MOSTRAR A ESTRUTURA DA EMPRESA -->
                     <img src="matriz.jpg" alt="Fábrica SR - Matriz São Jerônimo">
                 </div>
                 <div class="col-md-6">
@@ -344,7 +342,6 @@
         <div class="container">
             <h2>Nossos Serviços</h2>
             <div class="row g-4">
-                <!-- Para os cards de serviços, podemos usar as mesmas imagens dos funcionários -->
                 <div class="col-md-3">
                     <div class="card-servico">
                         <img src="servico1.jpg" alt="Manutenção Preditiva">
@@ -363,7 +360,6 @@
                         <div class="overlay">Caldeiraria</div>
                     </div>
                 </div>
-                <!-- Para o quarto card, usei a foto da matriz como ilustração de "Estrutura" -->
                 <div class="col-md-3">
                     <div class="card-servico">
                         <img src="matriz.jpg" alt="Manutenção Preventiva">
