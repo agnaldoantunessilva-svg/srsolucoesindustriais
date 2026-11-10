@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SR Soluções Industriais</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-escuro: #0A1E3F;
+            --azul-medio: #0F3460;
+            --laranja: #F18F01;
+            --cinza-claro: #F8F9FA;
+            --texto-escuro: #333333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--texto-escuro);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #FFFFFF;
+            border-bottom: 2px solid var(--azul-escuro);
+            padding: 10px 0;
+            z-index: 1050; /* Garante que o menu fique acima do carrossel */
+        }
+        .navbar-brand img { height: 55px; }
+        .nav-link { color: var(--azul-escuro) !important; font-weight: 600; font-size: 14px; }
+        .btn-whatsapp-nav {
+            background-color: #25D366;
+            color: white !important;
+            font-weight: 700;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 14px;
+        }
+        .btn-whatsapp-nav:hover { background-color: #1ebe56; }
+
+        /* --- CARROSSEL HERO --- */
+        .hero-carousel {
+            position: relative;
+            height: 600px; /* Altura do banner */
+            background-color: var(--azul-escuro);
+        }
+        
+        .carousel-item {
+            height: 600px;
+            position: relative;
+            background-color: var(--azul-escuro);
+        }
+
+        /* Aplica o degradê azul em cima das imagens */
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, rgba(10,30,63,0.95) 0%, rgba(10,30,63,0.6) 50%, rgba(10,30,63,0.2) 100%);
+            z-index: 1;
+        }
+
+        /* As imagens ficam alinhadas à direita (ou centro) */
+        .carousel-item img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover; /* Ajusta a imagem sem distorcer */
+            object-position: right center; /* Foca no funcionário */
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Texto do Banner */
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 10%; /* Distância da borda esquerda */
+            transform: translateY(-50%);
+            z-index: 2;
+            color: white;
+            max-width: 600px;
+        }
+
+        .hero-text h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.2; }
+        .hero-text .destaque { color: var(--laranja); }
+        .hero-text p { font-size: 1.1rem; margin-top: 20px; }
+        .btn-laranja {
+            background-color: var(--laranja);
+            color: white;
+            font-weight: 700;
+            border-radius: 25px;
+            padding: 12px 30px;
+            border: none;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-laranja:hover { background-color: #d17a00; color: white; }
+
+        /* Faixa de Ícones */
+        .faixa-icones {
+            background-color: var(--azul-medio);
+            color: white;
+            padding: 25px 0;
+            border-bottom: 3px solid var(--laranja);
+            position: relative;
+            z-index: 10;
+        }
+        .faixa-icones .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .faixa-icones i { font-size: 2rem; margin-bottom: 10px; color: white; }
+        .faixa-icones span { font-size: 0.8rem; font-weight: 600; line-height: 1.2; }
+
+        /* Sobre Nós */
+        .sobre { padding: 80px 0; background-color: #FFFFFF; }
+        .sobre h2 { font-weight: 800; color: var(--azul-escuro); margin-bottom: 20px; }
+        .sobre h2 span { color: var(--laranja); }
+        .sobre p { font-size: 1.05rem; line-height: 1.6; }
+        .check-list { list-style: none; padding-left: 0; margin-top: 20px; }
+        .check-list li { margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; }
+        .check-list i { color: var(--laranja); margin-right: 10px; font-size: 1.2rem; }
+        .sobre blockquote {
+            font-style: italic;
+            font-weight: 700;
+            color: var(--azul-escuro);
+            border-left: 4px solid var(--laranja);
+            padding-left: 15px;
+            margin-top: 25px;
+        }
+        .foto-sobre img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Nossos Serviços */
+        .servicos { padding: 60px 0; background-color: var(--cinza-claro); }
+        .servicos h2 { font-weight: 800; color: var(--azul-escuro); margin-bottom: 40px; text-align: center; }
+        .card-servico {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 220px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .card-servico img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .card-servico:hover img { transform: scale(1.05); }
+        .card-servico .overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(10,30,63,0.9) 0%, rgba(10,30,63,0) 100%);
+            color: white;
+            padding: 20px 15px 15px 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* Vagas de Emprego */
+        .vagas {
+            background: linear-gradient(rgba(10,30,63,0.9), rgba(10,30,63,0.9)), url('https://images.unsplash.com/photo-1504307651254-35680f356f12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 60px 0;
+        }
+        .vagas h2 { font-weight: 800; margin-bottom: 15px; }
+        .vagas h2 i { color: var(--laranja); }
+        .vagas p { font-size: 1.05rem; }
+        .vagas .btn-outline-laranja {
+            border: 2px solid var(--laranja);
+            color: var(--laranja);
+            font-weight: 700;
+            border-radius: 25px;
+            padding: 10px 25px;
+            text-decoration: none;
+        }
+        .vagas .btn-outline-laranja:hover { background-color: var(--laranja); color: white; }
+        .vagas .whats-link { color: white; text-decoration: none; font-weight: 700; font-size: 1.2rem; }
+        .vagas .whats-link:hover { color: var(--laranja); }
+
+        /* Contato */
+        .contato { padding: 40px 0; background-color: #FFFFFF; border-bottom: 1px solid #eee; }
+        .contato-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            background: #fff;
+            height: 100%;
+        }
+        .contato-item .icon-box {
+            background-color: var(--cinza-claro);
+            padding: 15px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .contato-item .icon-box i { font-size: 1.5rem; color: var(--azul-escuro); }
+        .contato-item h6 { margin: 0; font-size: 0.8rem; color: #777; text-transform: uppercase; font-weight: 600; }
+        .contato-item p { margin: 0; font-weight: 700; color: var(--azul-escuro); font-size: 1rem; }
+
+        /* Footer */
+        footer { background-color: var(--azul-escuro); color: white; padding: 30px 0; }
+        footer img { height: 50px; }
+        footer p { margin: 0; font-size: 0.85rem; color: #ccc; }
+        .redes-sociais a { color: white; font-size: 1.2rem; margin-left: 10px; transition: 0.3s; }
+        .redes-sociais a:hover { color: var(--laranja); }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero-carousel, .carousel-item { height: 500px; }
+            .hero-text { left: 5%; right: 5%; text-align: center; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .carousel-item img { object-position: center; opacity: 0.3; } /* Deixa a foto mais apagada no celular para o texto aparecer */
+            .faixa-icones .item { margin-bottom: 15px; }
+            .contato-item { margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="SR Soluções Industriais"> 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vagas">Vagas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+                <a href="https://wa.me/5551982331299" target="_blank" class="btn btn-whatsapp-nav">
+                    <i class="fab fa-whatsapp"></i> (51) 98233-1299
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- --- CARROSSEL DE IMAGENS (HERO) --- -->
+    <div id="heroCarousel" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="3000">
+        <!-- Indicadores (bolinhas) -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- Imagens -->
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <img src="servico1.jpg" alt="Análise de Vibração">
+                <div class="hero-text">
+                    <h1>Manutenção que<br>mantém sua indústria<br><span class="destaque">sempre em movimento.</span></h1>
+                    <p>Soluções completas em Manutenção Preditiva, Preventiva e Corretiva, com qualidade, segurança e alto desempenho.</p>
+                    <a href="#servicos" class="btn btn-laranja">Conheça nossos serviços <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <img src="servico2.jpg" alt="Manutenção Elétrica">
+                <div class="hero-text">
+                    <h1>Manutenção que<br>mantém sua indústria<br><span class="destaque">sempre em movimento.</span></h1>
+                    <p>Soluções completas em Manutenção Preditiva, Preventiva e Corretiva, com qualidade, segurança e alto desempenho.</p>
+                    <a href="#servicos" class="btn btn-laranja">Conheça nossos serviços <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <img src="servico3.jpg" alt="Caldeiraria e Solda">
+                <div class="hero-text">
+                    <h1>Manutenção que<br>mantém sua indústria<br><span class="destaque">sempre em movimento.</span></h1>
+                    <p>Soluções completas em Manutenção Preditiva, Preventiva e Corretiva, com qualidade, segurança e alto desempenho.</p>
+                    <a href="#servicos" class="btn btn-laranja">Conheça nossos serviços <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles (Setas) -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <!-- Faixa de Ícones -->
+    <section class="faixa-icones">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-2 item"><i class="fas fa-chart-line"></i><span>Análise de Vibração</span></div>
+                <div class="col-6 col-md-2 item"><i class="fas fa-temperature-high"></i><span>Termografia Industrial</span></div>
+                <div class="col-6 col-md-2 item"><i class="fas fa-tools"></i><span>Manutenção Preditiva</span></div>
+                <div class="col-6 col-md-2 item"><i class="fas fa-bolt"></i><span>Manutenção Elétrica</span></div>
+                <div class="col-6 col-md-2 item"><i class="fas fa-industry"></i><span>Caldeiraria</span></div>
+                <div class="col-6 col-md-2 item"><i class="fas fa-shield-alt"></i><span>Manutenção Preventiva</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0 foto-sobre">
+                    <!-- AQUI MANTIVE A FOTO DA MATRIZ PARA MOSTRAR A ESTRUTURA DA EMPRESA -->
+                    <img src="matriz.jpg" alt="Fábrica SR - Matriz São Jerônimo">
+                </div>
+                <div class="col-md-6">
+                    <h2>Sobre a SR <span>Soluções Industriais</span></h2>
+                    <p>Somos uma empresa especializada em Manutenção Preditiva, Preventiva e Corretiva, Elétrica e Caldeiraria. Soluções completas para aumentar a confiabilidade dos seus equipamentos e reduzir custos de manutenção.</p>
+                    <ul class="check-list">
+                        <li><i class="fas fa-check-circle"></i> Equipe técnica qualificada</li>
+                        <li><i class="fas fa-check-circle"></i> Tecnologia de ponta</li>
+                        <li><i class="fas fa-check-circle"></i> Compromisso com resultados</li>
+                    </ul>
+                    <blockquote>"Sua indústria mais produtiva, com a nossa parceria."</blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossos Serviços -->
+    <section id="servicos" class="servicos">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="row g-4">
+                <!-- Para os cards de serviços, podemos usar as mesmas imagens dos funcionários -->
+                <div class="col-md-3">
+                    <div class="card-servico">
+                        <img src="servico1.jpg" alt="Manutenção Preditiva">
+                        <div class="overlay">Manutenção Preditiva</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card-servico">
+                        <img src="servico2.jpg" alt="Manutenção Elétrica">
+                        <div class="overlay">Manutenção Elétrica</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card-servico">
+                        <img src="servico3.jpg" alt="Caldeiraria">
+                        <div class="overlay">Caldeiraria</div>
+                    </div>
+                </div>
+                <!-- Para o quarto card, usei a foto da matriz como ilustração de "Estrutura" -->
+                <div class="col-md-3">
+                    <div class="card-servico">
+                        <img src="matriz.jpg" alt="Manutenção Preventiva">
+                        <div class="overlay">Manutenção Preventiva</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vagas de Emprego -->
+    <section id="vagas" class="vagas">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <h2><i class="fas fa-users me-2"></i> Vagas de Emprego</h2>
+                    <p>Faça parte do nosso time! Estamos sempre em busca de talentos para crescer junto à SR Soluções Industriais.</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-1 fw-bold">Envie seu currículo para o nosso RH:</p>
+                    <a href="https://wa.me/5551982331299" target="_blank" class="whats-link">
+                        <i class="fab fa-whatsapp"></i> (51) 98233-1299
+                    </a>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <a href="https://wa.me/5551982331299" target="_blank" class="btn btn-outline-laranja">
+                        Confira as vagas <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <div class="row">
+                <!-- WhatsApp -->
+                <div class="col-md-4">
+                    <div class="contato-item">
+                        <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                        <div>
+                            <h6>Entre em Contato (RH)</h6>
+                            <p>(51) 98233-1299</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- E-mail -->
+                <div class="col-md-4">
+                    <div class="contato-item">
+                        <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h6>Envie um E-mail</h6>
+                            <p>comercial@srsolucoesindustriais.com.br</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Endereços -->
+                <div class="col-md-4">
+                    <div class="contato-item">
+                        <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h6>Endereços</h6>
+                            <p style="font-size: 0.85rem; font-weight: 600;">
+                                <strong>Matriz:</strong> Rod. RS 401, 999, Distrito Industrial - São Jerônimo/RS<br>
+                                <strong>Filial:</strong> Rua Hermes da Fonseca, 1388 - Rio Branco - Canoas/RS
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <img src="logo.png" alt="SR Soluções Industriais">
+                </div>
+                <div class="col-md-4 text-center mb-3 mb-md-0">
+                    <p class="fst-italic">Qualidade, inovação e pessoas<br>para um futuro mais produtivo.</p>
+                </div>
+                <div class="col-md-4 text-md-end redes-sociais">
+                    <span class="me-2" style="font-size: 0.85rem; color: #ccc;">Siga-nos nas redes sociais</span>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <hr class="mt-4 border-secondary">
+            <div class="text-center">
+                <p>&copy; 2026 SR Soluções Industriais. Todos os direitos reservados. | Política de Privacidade | Termos de Uso</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
